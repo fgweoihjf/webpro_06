@@ -34,6 +34,19 @@ app.get("/keiyo_add", (req, res) => {
   // res.render('db1', { data: station });
 });
 
+let language = [
+  { id:1, name:"C", year:1972, creator:"Dennis Ritchie"},
+  { id:2, name:"Python", year:1991, creator:"Guido van Rossum"},
+  { id:3, name:"Java", year:1995, creator:"James Gosling"},
+  { id:4, name:"JavaScript", year:1995, creator:"Brendan Eich"},
+  { id:5, name:"Ruby", year:1995, creator:"まつもとゆきひろ"},
+];
+
+app.get("/lang", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('lang', { data: language });
+});
+
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
