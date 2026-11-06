@@ -47,6 +47,16 @@ app.get("/lang", (req, res) => {
   res.render('lang', { data: language });
 });
 
+app.get("/lang_add", (req, res) => {
+  let id = req.query.id;
+  let name = req.query.name;
+  let year = req.query.year;
+  let creator = req.query.creator;
+  let newdata = { id: id, name: name, year: year, creator: creator };
+  language.push( newdata );
+  res.redirect('/lang');
+});
+
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
