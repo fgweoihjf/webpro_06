@@ -1,9 +1,11 @@
+// ===== 基本設定 =====
 const express = require("express");
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
+// ===== 京葉線の駅（一覧：/keiyo, /keiyo2　追加：/keiyo_add） =====
 let station = [
   { id:1, code:"JE01", name:"東京駅"},
   { id:2, code:"JE07", name:"舞浜駅"},
@@ -34,6 +36,7 @@ app.get("/keiyo_add", (req, res) => {
   // res.render('db1', { data: station });
 });
 
+// ===== プログラミング言語（一覧：/lang　追加：/lang_add） =====
 let language = [
   { id:1, name:"C", year:1972, creator:"Dennis Ritchie"},
   { id:2, name:"Python", year:1991, creator:"Guido van Rossum"},
@@ -57,6 +60,7 @@ app.get("/lang_add", (req, res) => {
   res.redirect('/lang');
 });
 
+// ===== 挨拶とアイコン =====
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
@@ -71,6 +75,7 @@ app.get("/icon", (req, res) => {
   res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
 });
 
+// ===== おみくじ =====
 app.get("/omikuji1", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
@@ -89,6 +94,7 @@ app.get("/omikuji2", (req, res) => {
   res.render( 'omikuji2', {result:luck} );
 });
 
+// ===== じゃんけん（/janken：授業の雛形　/janken2：勝敗判定を実装した版） =====
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
   let win = Number( req.query.win );
@@ -149,4 +155,5 @@ app.get("/janken2", (req, res) => {
   res.render( 'janken2', display );
 });
 
+// ===== サーバの起動 =====
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
